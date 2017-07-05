@@ -12,14 +12,14 @@ var GrelaDesign;
 (function (GrelaDesign) {
     var Game;
     (function (Game) {
-        var Body = (function (_super) {
-            __extends(Body, _super);
-            function Body(game, x, y) {
+        var BodyPart = (function (_super) {
+            __extends(BodyPart, _super);
+            function BodyPart(game, x, y) {
                 return _super.call(this, game, x * 16, y * 16, 'body') || this;
             }
-            return Body;
+            return BodyPart;
         }(Phaser.Sprite));
-        Game.Body = Body;
+        Game.BodyPart = BodyPart;
     })(Game = GrelaDesign.Game || (GrelaDesign.Game = {}));
 })(GrelaDesign || (GrelaDesign = {}));
 var GrelaDesign;
@@ -104,10 +104,27 @@ var GrelaDesign;
             __extends(Snake, _super);
             function Snake(game, x, y) {
                 var _this = _super.call(this, game) || this;
-                _this.head = new Game.Body(game, x, y);
+                _this.headPosition = new Phaser.Point(x, y);
+                /*
+                if(length && length > 0) {
+                    var part;
+                    for (var i = 0; i < length; i++) {
+                        part = this.add(new BodyPart(this.game, 0, 0));
+                    }
+                }
+                */
+                _this.head = _this.create(x * 16, y * 16);
                 _this.add(_this.head);
                 return _this;
             }
+            Snake.prototype.create = function (x, y) {
+                var part = this.getFirstExists(false);
+                if (!part) {
+                    part = new Game.BodyPart(this.game, 0, 0);
+                    this.add(part, true);
+                }
+                return part;
+            };
             Snake.prototype.faceLeft = function () {
                 if (this.direction === Snake.UP || this.direction === Snake.DOWN) {
                     this.heading = Snake.LEFT;
@@ -127,6 +144,24 @@ var GrelaDesign;
                 if (this.direction === Snake.LEFT || this.direction === Snake.RIGHT) {
                     this.heading = Snake.DOWN;
                 }
+            };
+            Snake.prototype.move = function () {
+                switch (this.heading) {
+                    case Snake.LEFT:
+                        this.headPosition.x = Phaser.Math.wrap(this.headPosition.x - 1, 0, 40);
+                        break;
+                    case Snake.RIGHT:
+                        this.headPosition.x = Phaser.Math.wrap(this.headPosition.x + 1, 0, 40);
+                        break;
+                    case Snake.UP:
+                        this.headPosition.y = Phaser.Math.wrap(this.headPosition.y - 1, 0, 30);
+                        break;
+                    case Snake.DOWN:
+                        this.headPosition.y = Phaser.Math.wrap(this.headPosition.y + 1, 0, 30);
+                        break;
+                }
+                this.direction = this.heading;
+                return true;
             };
             Snake.prototype.update = function () {
                 this.game.debug.spriteBounds(this.head);
