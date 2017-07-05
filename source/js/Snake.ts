@@ -1,5 +1,5 @@
 
-/// <reference path="Body.ts" />
+/// <reference path="BodyPart.ts" />
 
 module GrelaDesign.Game {
     export class Snake extends Phaser.Group {
@@ -42,7 +42,7 @@ module GrelaDesign.Game {
 
 
 
-        private create(x, y):BodyPart {
+        create(x, y):BodyPart {
             var part:BodyPart = this.getFirstExists(false);
             if(!part) {
                 part = new BodyPart(this.game, 0, 0);
