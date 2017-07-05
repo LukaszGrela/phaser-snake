@@ -1,0 +1,16 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "amd",
+        "sourceMap": true,
+        "outFile": "build/js/game.js"
+    },
+    "include": [
+        "source/**/*"
+    ],
+    "exclude": [
+        "node_modules/**/*",
+        "_defs/**/*.d.ts"
+    ]
+}
