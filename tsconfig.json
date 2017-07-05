@@ -10,7 +10,6 @@
         "source/**/*"
     ],
     "exclude": [
-        "node_modules/**/*",
-        "_defs/**/*.d.ts"
+        "node_modules/**/*"
     ]
 }

@@ -49,9 +49,9 @@ var GrelaDesign;
             Boot.prototype.create = function () {
                 this.game.state.start(Game.Preloader.KEY, true, false);
             };
+            Boot.KEY = "Boot";
             return Boot;
         }(Phaser.State));
-        Boot.KEY = "Boot";
         Game.Boot = Boot;
     })(Game = GrelaDesign.Game || (GrelaDesign.Game = {}));
 })(GrelaDesign || (GrelaDesign = {}));
@@ -71,9 +71,9 @@ var GrelaDesign;
             Preloader.prototype.create = function () {
                 this.game.state.start(Game.MainMenu.KEY, true, false);
             };
+            Preloader.KEY = "Preloader";
             return Preloader;
         }(Phaser.State));
-        Preloader.KEY = "Preloader";
         Game.Preloader = Preloader;
     })(Game = GrelaDesign.Game || (GrelaDesign.Game = {}));
 })(GrelaDesign || (GrelaDesign = {}));
@@ -89,13 +89,13 @@ var GrelaDesign;
             MainMenu.prototype.create = function () {
                 this.game.state.start(Game.Level.KEY, true, false);
             };
+            MainMenu.KEY = "MainMenu";
             return MainMenu;
         }(Phaser.State));
-        MainMenu.KEY = "MainMenu";
         Game.MainMenu = MainMenu;
     })(Game = GrelaDesign.Game || (GrelaDesign.Game = {}));
 })(GrelaDesign || (GrelaDesign = {}));
-/// <reference path="Body.ts" />
+/// <reference path="BodyPart.ts" />
 var GrelaDesign;
 (function (GrelaDesign) {
     var Game;
@@ -167,13 +167,13 @@ var GrelaDesign;
                 this.game.debug.spriteBounds(this.head);
                 this.game.debug.spriteInfo(this.head, 10, 10);
             };
+            //  Direction consts
+            Snake.UP = 0;
+            Snake.DOWN = 1;
+            Snake.LEFT = 2;
+            Snake.RIGHT = 3;
             return Snake;
         }(Phaser.Group));
-        //  Direction consts
-        Snake.UP = 0;
-        Snake.DOWN = 1;
-        Snake.LEFT = 2;
-        Snake.RIGHT = 3;
         Game.Snake = Snake;
     })(Game = GrelaDesign.Game || (GrelaDesign.Game = {}));
 })(GrelaDesign || (GrelaDesign = {}));
@@ -210,9 +210,9 @@ var GrelaDesign;
                     this.snake.faceDown();
                 }
             };
+            Level.KEY = "Level";
             return Level;
         }(Phaser.State));
-        Level.KEY = "Level";
         Game.Level = Level;
     })(Game = GrelaDesign.Game || (GrelaDesign.Game = {}));
 })(GrelaDesign || (GrelaDesign = {}));
